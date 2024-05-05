@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const { slug } = Astro.params;
+if (!slug) throw new Error("Slug not found");
+const post = await getEntry("posts", slug);
+
+if (!post) throw new Error("No post found for this slug");
+const { Content } = await post.render();
+
+const imgSrc = `../src/assets/images/posts/${post.slug}/blogImage.jpg`;
+
+// Generate static pages
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+import Footer from "../../components/Footer.astro";
+---
+
+<BlogLayout title={post.data.title}>
+  <div class="blog_heading">
+    <h1 class="text-5xl text-teal-600 uppercase font-bold">
+      {post.data.title}
+    </h1>
+  </div>
+  <div
+    class="blog_inner_container mt-6 w-full aspect-video lg:h-[450px] xl:h-[500px] rounded-md overflow-hidden"
+  >
+    <img class="w-full object-cover" alt={post.data.title} src={imgSrc} />
+  </div>
+
+  <div
+    class="blog_content_container my-8 prose-base prose-h2:m-0 prose-p:m-0 prose-p:text-xl prose-p:leading-9 prose-img:rounded-xl prose-h2:py-4 prose-h2:text-3xl prose-h2:text-teal-300 prose-h2:font-semibold prose-img:m-0 prose-img:my-4 prose-li:list-disc prose-blockquote:border prose-blockquote:p-4 prose-blockquote:rounded-xl prose-blockquote:bg-slate-950"
+  >
+    <Content />
+  </div>
+</BlogLayout>
+<Footer />

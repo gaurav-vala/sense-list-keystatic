@@ -4,8 +4,8 @@ export default config({
   storage: {
     kind: "github",
     repo: {
-      name: "sense-list-keystatic",
       owner: "gaurav-vala",
+      name: "sense-list-keystatic",
     },
   },
   collections: {

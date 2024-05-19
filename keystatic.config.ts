@@ -19,7 +19,7 @@ export default config({
         blogImage: fields.image({
           label: "Blog Image",
           directory: "src/assets/images/posts",
-          publicPath: "../../assets/images/posts/",
+          publicPath: "/assets/images/posts/",
         }),
         content: fields.document({
           label: "Content",
@@ -28,7 +28,7 @@ export default config({
           links: true,
           images: {
             directory: "src/assets/images/posts",
-            publicPath: "../../assets/images/posts/",
+            publicPath: "/assets/images/posts/",
           },
         }),
       },

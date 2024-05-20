@@ -18,8 +18,8 @@ export default config({
         title: fields.slug({ name: { label: "Title" } }),
         blogImage: fields.image({
           label: "Blog Image",
-          directory: "src/assets/images/posts",
-          publicPath: "/assets/images/posts/",
+          directory: "public/assets/images/posts",
+          publicPath: "./assets/images/posts/",
         }),
         content: fields.document({
           label: "Content",

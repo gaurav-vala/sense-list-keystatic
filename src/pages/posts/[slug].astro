@@ -9,7 +9,9 @@ const post = await getEntry("posts", slug);
 if (!post) throw new Error("No post found for this slug");
 const { Content } = await post.render();
 
-const imgSrc = `../src/assets/images/posts/${post.slug}/blogImage.jpg`;
+const imgSrc = `/assets/images/posts/${post.slug}/blogImage.jpg`;
+
+console.log(imgSrc);
 
 // Generate static pages
 export async function getStaticPaths() {
